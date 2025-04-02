@@ -12,6 +12,36 @@
           <p class="text-lg text-gray-700 dark:text-gray-300 font-medium">
             Gotta catch 'em all! Analyze any website to discover the technologies it's using
           </p>
+          
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <!-- API Features Column -->
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p class="font-medium mb-2">A more robust demo is coming soon! The API supports:</p>
+              <ul class="space-y-1 text-left list-disc list-inside">
+                <li>Multiple detection methods (global variables, selectors, network requests)</li>
+                <li>Category filtering (frameworks, CMS, analytics, etc.)</li>
+                <li>Custom fingerprints support</li>
+                <li>Progress tracking and timeouts</li>
+                <li>Headless mode configuration</li>
+              </ul>
+            </div>
+
+            <!-- Contribution Column -->
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              <p class="font-medium mb-2">Want to contribute? There are two ways to help:</p>
+              <div class="space-y-4 text-left">
+                <div>
+                  <h3 class="font-medium text-yellow-600 dark:text-yellow-400">1. Add New Tech Fingerprints:</h3>
+                  <p class="ml-4 mt-1">Clone the core repo locally with <code class="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">pnpm setup:local</code>, add your fingerprint JSON files, and create a PR at <a href="https://github.com/tzi-labs/whats-that-tech-core" class="text-blue-500 hover:underline" target="_blank">whats-that-tech-core</a>.</p>
+                </div>
+                <div>
+                  <h3 class="font-medium text-yellow-600 dark:text-yellow-400">2. Improve the SDK:</h3>
+                  <p class="ml-4 mt-1">Fork the <a href="https://github.com/tzi-labs/whats-that-tech-js-sdk" class="text-blue-500 hover:underline" target="_blank">JS SDK repository</a>, make your changes, and submit a PR to enhance the detection engine.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="flex justify-center gap-4 mt-6">
             <button
               v-for="(test, index) in tests"
