@@ -14,6 +14,9 @@ importers:
       '@nuxt/ui':
         specifier: 3.0.2
         version: 3.0.2(@babel/parser@7.27.0)(db0@0.3.1)(embla-carousel@8.5.2)(ioredis@5.6.0)(magicast@0.3.5)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))(zod@3.24.2)
+      '@tailwindcss/vite':
+        specifier: ^4.1.1
+        version: 4.1.1(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))
       nuxt:
         specifier: ^3.16.2
         version: 3.16.2(@parcel/watcher@2.5.1)(@types/node@22.14.0)(db0@0.3.1)(ioredis@5.6.0)(lightningcss@1.29.2)(magicast@0.3.5)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
@@ -31,7 +34,7 @@ importers:
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
       whats-that-tech:
         specifier: github:tzi-labs/whats-that-tech-js-sdk
-        version: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/4ef2d77b79b6e9c5c09c49e329785dbd39e9c4a6(typescript@5.8.2)
+        version: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29(typescript@5.8.2)
     devDependencies:
       '@nuxtjs/tailwindcss':
         specifier: ^6.13.2
@@ -3916,8 +3919,8 @@ packages:
     resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26}
     version: 0.0.0
 
-  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/4ef2d77b79b6e9c5c09c49e329785dbd39e9c4a6:
-    resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/4ef2d77b79b6e9c5c09c49e329785dbd39e9c4a6}
+  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29:
+    resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29}
     version: 0.0.1
 
   whatwg-url@5.0.0:
@@ -8367,7 +8370,7 @@ snapshots:
 
   whats-that-tech-core@https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26: {}
 
-  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/4ef2d77b79b6e9c5c09c49e329785dbd39e9c4a6(typescript@5.8.2):
+  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29(typescript@5.8.2):
     dependencies:
       puppeteer: 24.5.0(typescript@5.8.2)
       whats-that-tech-core: https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26
