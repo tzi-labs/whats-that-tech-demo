@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/1b562f6b-1bd1-4e36-80fb-dd050914d367)
+
+
 # What's That Tech?
 
 A web application that analyzes websites to detect the technologies they're using. Built with Nuxt 3 and powered by the whats-that-tech package.
