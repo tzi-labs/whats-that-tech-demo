@@ -1,76 +1,69 @@
-# Nuxt Minimal Starter
+# What's That Tech?
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A web application that analyzes websites to detect the technologies they're using. Built with Nuxt 3 and powered by the whats-that-tech package.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- Enter any URL to analyze
+- Detects various technologies including:
+  - Frameworks
+  - Content Management Systems (CMS)
+  - Programming Languages
+  - Databases
+  - Servers
+  - DevOps Tools
+  - CI/CD Platforms
+  - Cloud Services
+- Real-time progress tracking during analysis
+- Clean and intuitive user interface
 
+## How It Works
+
+1. Enter a URL in the input field
+2. The application will analyze the website using whats-that-tech
+3. Results are displayed showing all detected technologies with their categories and confidence levels
+
+## Usage
+
+1. Clone the repository:
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+git clone https://github.com/yourusername/whats-that-tech-demo.git
+cd whats-that-tech-demo
 ```
 
-## Development Server
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-Start the development server on `http://localhost:3000`:
+3. Start the development server and automatically open in your browser:
+```bash
+pnpm dev -o
+```
+
+4. Enter any URL in the input field and click "Analyze" to detect technologies
+
+## Development Commands
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
+# Start development server (without auto-opening)
 pnpm dev
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
+# Build for production
 pnpm build
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
+# Preview production build
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# whats-that-tech-demo
+## Technologies Used
+
+- Nuxt 3
+- Vue 3
+- Tailwind CSS
+- whats-that-tech
+- TypeScript
+
+## License
+
+MIT
