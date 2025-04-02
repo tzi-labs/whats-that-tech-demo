@@ -142,79 +142,60 @@
       </div>
 
       <div v-if="results" class="w-full md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        <UCard v-for="result in results" :key="result.url" class="overflow-hidden border-4 border-yellow-400 dark:border-yellow-500 shadow-lg">
-          <template #header>
-            <div class="flex items-center justify-between">
-              <h2 class="text-xl font-semibold text-red-600 dark:text-red-400">
-                {{ result.url }}
-              </h2>
-              <UBadge color="yellow" variant="solid" class="font-bold">
-                {{ result.technologies.length }} technologies checked
-              </UBadge>
-            </div>
-          </template>
-
-          <div class="space-y-4">
-            <!-- Detected Technologies -->
-            <div v-for="tech in [...result.technologies].filter(t => t.detected).sort((a, b) => b.confidence - a.confidence)" :key="tech.name" 
-              class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors">
-              <div class="flex items-center gap-3">
-                <UIcon
-                  :name="getCategoryIcon(tech.category)"
-                  class="w-6 h-6 text-green-500 dark:text-green-400"
-                />
-                <div>
-                  <h3 class="font-medium text-gray-900 dark:text-white">{{ tech.name }}</h3>
-                  <p class="text-sm text-gray-500 dark:text-gray-400 capitalize">{{ tech.category }}</p>
+        <Transition
+          v-for="result in results" 
+          :key="result.url"
+          enter-active-class="transition duration-500"
+          enter-from-class="opacity-0 scale-95"
+          enter-to-class="opacity-100 scale-100"
+        >
+          <UCard 
+            :data-url="result.url"
+            class="overflow-hidden border-4 border-yellow-400 dark:border-yellow-500 shadow-lg transform transition-all duration-300" 
+            :class="{
+              'scale-100 opacity-100': !result.analyzing || result.technologies.length > 0,
+              'scale-95 opacity-90': result.analyzing && result.technologies.length === 0
+            }"
+          >
+            <template #header>
+              <div class="flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-red-600 dark:text-red-400">
+                  {{ result.url }}
+                </h2>
+                <div class="flex items-center gap-2">
+                  <div v-if="result.analyzing" class="flex items-center gap-2 text-yellow-500 dark:text-yellow-400 animate-pulse">
+                    <UIcon name="i-heroicons-signal" class="w-5 h-5" />
+                    <span class="text-sm font-medium">Analyzing...</span>
+                  </div>
+                  <UBadge color="yellow" variant="solid" class="font-bold">
+                    {{ result.technologies.length }} technologies checked
+                  </UBadge>
                 </div>
               </div>
-              <div class="flex items-center gap-2">
-                <UBadge
-                  color="green"
-                  variant="solid"
-                  class="font-bold"
-                >
-                  Detected
-                </UBadge>
-                <UBadge
-                  :color="getConfidenceColor(tech.confidence)"
-                  variant="solid"
-                  class="font-bold"
-                >
-                  {{ Math.round(tech.confidence * 100) }}% match
-                </UBadge>
+            </template>
+
+            <div v-if="result.analyzing && result.technologies.length === 0" class="py-8">
+              <div class="flex flex-col items-center justify-center gap-3">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="w-12 h-12 animate-bounce" />
+                <p class="text-sm text-gray-600 dark:text-gray-400">Catching technologies...</p>
               </div>
             </div>
 
-            <!-- Undetected Technologies -->
-            <div v-if="result.technologies.some(t => !t.detected)" class="mt-6">
-              <UButton
-                color="gray"
-                variant="ghost"
-                class="w-full"
-                @click="result.showUndetected = !result.showUndetected"
+            <div v-else class="space-y-4">
+              <!-- Detected Technologies -->
+              <TransitionGroup 
+                name="tech-item"
+                tag="div"
+                class="space-y-4"
               >
-                <template #leading>
-                  <UIcon
-                    :name="result.showUndetected ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                    class="w-5 h-5"
-                  />
-                </template>
-                {{ result.showUndetected ? 'Hide Undetected Technologies' : 'Show Undetected Technologies' }}
-                <template #trailing>
-                  <UBadge color="gray" variant="solid" class="ml-2">
-                    {{ result.technologies.filter(t => !t.detected).length }}
-                  </UBadge>
-                </template>
-              </UButton>
-
-              <div v-if="result.showUndetected" class="mt-4 space-y-4">
-                <div v-for="tech in [...result.technologies].filter(t => !t.detected).sort((a, b) => b.confidence - a.confidence)" :key="tech.name" 
-                  class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+                <div v-for="tech in [...result.technologies].filter(t => t.detected).sort((a, b) => b.confidence - a.confidence)" 
+                  :key="tech.name" 
+                  class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors"
+                >
                   <div class="flex items-center gap-3">
                     <UIcon
                       :name="getCategoryIcon(tech.category)"
-                      class="w-6 h-6 text-red-500 dark:text-red-400"
+                      class="w-6 h-6 text-green-500 dark:text-green-400"
                     />
                     <div>
                       <h3 class="font-medium text-gray-900 dark:text-white">{{ tech.name }}</h3>
@@ -223,11 +204,11 @@
                   </div>
                   <div class="flex items-center gap-2">
                     <UBadge
-                      color="gray"
+                      color="green"
                       variant="solid"
                       class="font-bold"
                     >
-                      Not Detected
+                      Detected
                     </UBadge>
                     <UBadge
                       :color="getConfidenceColor(tech.confidence)"
@@ -238,10 +219,73 @@
                     </UBadge>
                   </div>
                 </div>
+              </TransitionGroup>
+
+              <!-- Undetected Technologies -->
+              <div v-if="result.technologies.some(t => !t.detected)" class="mt-6">
+                <UButton
+                  color="gray"
+                  variant="ghost"
+                  class="w-full"
+                  @click="result.showUndetected = !result.showUndetected"
+                >
+                  <template #leading>
+                    <UIcon
+                      :name="result.showUndetected ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                      class="w-5 h-5"
+                    />
+                  </template>
+                  {{ result.showUndetected ? 'Hide Undetected Technologies' : 'Show Undetected Technologies' }}
+                  <template #trailing>
+                    <UBadge color="gray" variant="solid" class="ml-2">
+                      {{ result.technologies.filter(t => !t.detected).length }}
+                    </UBadge>
+                  </template>
+                </UButton>
+
+                <div v-if="result.showUndetected" class="mt-4">
+                  <TransitionGroup 
+                    name="tech-item"
+                    tag="div"
+                    class="space-y-4"
+                  >
+                    <div v-for="tech in [...result.technologies].filter(t => !t.detected).sort((a, b) => b.confidence - a.confidence)" 
+                      :key="tech.name" 
+                      class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg border-2 border-gray-200 dark:border-gray-700"
+                    >
+                      <div class="flex items-center gap-3">
+                        <UIcon
+                          :name="getCategoryIcon(tech.category)"
+                          class="w-6 h-6 text-red-500 dark:text-red-400"
+                        />
+                        <div>
+                          <h3 class="font-medium text-gray-900 dark:text-white">{{ tech.name }}</h3>
+                          <p class="text-sm text-gray-500 dark:text-gray-400 capitalize">{{ tech.category }}</p>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <UBadge
+                          color="gray"
+                          variant="solid"
+                          class="font-bold"
+                        >
+                          Not Detected
+                        </UBadge>
+                        <UBadge
+                          :color="getConfidenceColor(tech.confidence)"
+                          variant="solid"
+                          class="font-bold"
+                        >
+                          {{ Math.round(tech.confidence * 100) }}% match
+                        </UBadge>
+                      </div>
+                    </div>
+                  </TransitionGroup>
+                </div>
               </div>
             </div>
-          </div>
-        </UCard>
+          </UCard>
+        </Transition>
       </div>
 
       <div v-if="rawResults" class="mt-6 max-w-3xl mx-auto">
@@ -269,6 +313,45 @@
     </UContainer>
   </div>
 </template>
+
+<style>
+.tech-item-enter-active,
+.tech-item-leave-active {
+  transition: all 0.3s ease;
+}
+
+.tech-item-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.tech-item-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.tech-item-move {
+  transition: transform 0.3s ease;
+}
+
+@keyframes card-pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.card-detected {
+  animation: card-pop 0.5s ease-out forwards;
+}
+</style>
 
 <script setup>
 const url = ref('')
@@ -338,41 +421,94 @@ function getConfidenceColor(confidence) {
 async function detectTech() {
   loading.value = true
   error.value = null
-  results.value = null
+  results.value = []
   rawResults.value = null
 
   try {
     const urlsToAnalyze = [url.value, ...urls.value].filter(Boolean);
     
-    console.log('Sending URLs:', urlsToAnalyze);
-
     const response = await fetch('/api/detect-tech', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'text/event-stream',
       },
       body: JSON.stringify({ 
         urls: urlsToAnalyze
-      }),
-    })
+      })
+    });
 
     if (!response.ok) {
-      throw new Error('Failed to detect technologies')
+      throw new Error('Failed to start analysis');
     }
 
-    const data = await response.json()
-    console.log('Received data:', data);
-    rawResults.value = data
-    // Add showUndetected property to each result
-    results.value = data.data.map(result => ({
-      ...result,
-      showUndetected: false
-    }))
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n\n');
+      
+      for (const line of lines) {
+        if (!line.trim() || !line.startsWith('data: ')) continue;
+        
+        const data = JSON.parse(line.slice(6));
+        
+        switch (data.type) {
+          case 'start':
+            // Initialize results array with empty technology arrays
+            results.value = data.urls.map(url => ({
+              url,
+              technologies: [],
+              showUndetected: false,
+              analyzing: true
+            }));
+            break;
+
+          case 'progress':
+            // Update progress for specific URL
+            console.log('Progress:', data.progress);
+            break;
+
+          case 'urlComplete':
+            // Update technologies for the completed URL
+            const resultIndex = results.value.findIndex(r => r.url === data.url);
+            if (resultIndex !== -1) {
+              // First update the analyzing state
+              results.value[resultIndex].analyzing = false;
+              
+              // Add a slight delay before showing technologies for a nice animation effect
+              setTimeout(() => {
+                results.value[resultIndex].technologies = data.technologies;
+                // Add card-detected class temporarily
+                const card = document.querySelector(`[data-url="${data.url}"]`);
+                if (card) {
+                  card.classList.add('card-detected');
+                  setTimeout(() => card.classList.remove('card-detected'), 500);
+                }
+              }, 300);
+            }
+            break;
+
+          case 'complete':
+            loading.value = false;
+            return;
+
+          case 'error':
+            error.value = data.message;
+            loading.value = false;
+            return;
+        }
+      }
+    }
+
   } catch (e) {
     console.error('Error:', e);
-    error.value = e.message
-  } finally {
-    loading.value = false
+    error.value = e.message;
+    loading.value = false;
   }
 }
 </script>
