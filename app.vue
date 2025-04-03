@@ -1,5 +1,27 @@
 <template>
   <div class="min-h-screen bg-gradient-to-b from-red-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <!-- Add navigation bar -->
+    <nav class="fixed top-0 right-0 p-4 z-50">
+      <div class="flex items-center gap-4">
+        <a 
+          href="https://github.com/tzi-labs/whats-that-tech-demo" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-gray-700 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+        >
+          <UIcon name="i-simple-icons-github" class="w-6 h-6" />
+        </a>
+        <a 
+          href="https://x.com/Joe_Elia" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-gray-700 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+        >
+          <UIcon name="i-simple-icons-x" class="w-6 h-6" />
+        </a>
+      </div>
+    </nav>
+
     <UContainer class="py-8">
       <div class="max-w-xl mx-auto">
         <div class="text-center mb-8">
@@ -362,6 +384,7 @@ const loading = ref(false)
 const error = ref(null)
 const showRawData = ref(false)
 const highlightCatch = ref(false)
+const { gtag } = useGtag()
 
 const tests = [
   {
@@ -384,6 +407,12 @@ function loadTest(testNumber) {
     setTimeout(() => {
       highlightCatch.value = false
     }, 2000)
+
+    // Track test button click
+    gtag('event', 'test_button_click', {
+      test_number: testNumber,
+      urls: test.urls
+    })
   }
 }
 
@@ -424,9 +453,13 @@ async function detectTech() {
   results.value = []
   rawResults.value = null
 
+  // Track catch button click with domains
+  const urlsToAnalyze = [url.value, ...urls.value].filter(Boolean)
+  gtag('event', 'catch_button_click', {
+    domains: urlsToAnalyze.map(url => new URL(url).hostname)
+  })
+
   try {
-    const urlsToAnalyze = [url.value, ...urls.value].filter(Boolean);
-    
     const response = await fetch('/api/detect-tech', {
       method: 'POST',
       headers: {
@@ -489,17 +522,40 @@ async function detectTech() {
                   card.classList.add('card-detected');
                   setTimeout(() => card.classList.remove('card-detected'), 500);
                 }
+
+                // Track successful detection
+                const detectedTechs = data.technologies.filter(t => t.detected);
+                gtag('event', 'tech_detection_success', {
+                  url: data.url,
+                  total_technologies: data.technologies.length,
+                  detected_count: detectedTechs.length,
+                  detected_technologies: detectedTechs.map(t => ({
+                    name: t.name,
+                    confidence: Math.round(t.confidence * 100)
+                  }))
+                });
               }, 300);
             }
             break;
 
           case 'complete':
             loading.value = false;
+            // Track overall completion
+            gtag('event', 'analysis_complete', {
+              total_urls: urlsToAnalyze.length,
+              successful_urls: results.value.filter(r => !r.analyzing).length,
+              total_technologies_detected: results.value.reduce((sum, r) => sum + r.technologies.filter(t => t.detected).length, 0)
+            });
             return;
 
           case 'error':
             error.value = data.message;
             loading.value = false;
+            // Track error
+            gtag('event', 'tech_detection_error', {
+              error_message: data.message,
+              urls: urlsToAnalyze
+            });
             return;
         }
       }
@@ -509,6 +565,11 @@ async function detectTech() {
     console.error('Error:', e);
     error.value = e.message;
     loading.value = false;
+    // Track error
+    gtag('event', 'tech_detection_error', {
+      error_message: e.message,
+      urls: urlsToAnalyze
+    });
   }
 }
 </script>
