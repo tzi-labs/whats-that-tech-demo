@@ -54,7 +54,7 @@
               <div class="space-y-4 text-left">
                 <div>
                   <h3 class="font-medium text-yellow-600 dark:text-yellow-400">1. Add New Tech Fingerprints:</h3>
-                  <p class="ml-4 mt-1">Clone the core repo locally with <code class="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">pnpm setup:local</code>, add your fingerprint JSON files, and create a PR at <a href="https://github.com/tzi-labs/whats-that-tech-core" class="text-blue-500 hover:underline" target="_blank">whats-that-tech-core</a>.</p>
+                  <p class="ml-4 mt-1">Clone the <a href="https://github.com/tzi-labs/whats-that-tech-js-sdk" class="text-blue-500 hover:underline" target="_blank">whats-that-tech-js-sdk repository</a> locally with <code class="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">pnpm setup:local</code>, add your fingerprint JSON files, and create a PR in the 'core' directory.</p>
                 </div>
                 <div>
                   <h3 class="font-medium text-yellow-600 dark:text-yellow-400">2. Improve the SDK:</h3>
