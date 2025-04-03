@@ -1,4 +1,5 @@
-import { findTech } from 'whats-that-tech';
+import { findTech } from 'whats-that-tech-js-sdk';
+import { join } from 'path';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -38,6 +39,7 @@ export default defineEventHandler(async (event) => {
         categories: ['framework', 'cms', 'language', 'database', 'server', 'devops', 'ci-cd', 'cloud'],
         headless: true,
         timeout: 30000,
+        customFingerprintsDir: join(process.cwd(), 'node_modules/whats-that-tech-core'),
         onProgress: (progress) => {
           // Send progress updates
           sendEvent({ 

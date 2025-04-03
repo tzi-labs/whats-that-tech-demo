@@ -32,9 +32,12 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
-      whats-that-tech:
+      whats-that-tech-core:
+        specifier: github:tzi-labs/whats-that-tech-core
+        version: https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26
+      whats-that-tech-js-sdk:
         specifier: github:tzi-labs/whats-that-tech-js-sdk
-        version: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29(typescript@5.8.2)
+        version: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/3b8f84591642bd2a430c5237a5362925c3179af2(typescript@5.8.2)
     devDependencies:
       '@nuxtjs/tailwindcss':
         specifier: ^6.13.2
@@ -1309,8 +1312,8 @@ packages:
   bare-events@2.5.4:
     resolution: {integrity: sha512-+gFfDkR8pj4/TrWCGUGWmJIkBwuxPS5F+a5yWjOHQt2hHvNZd5YLzadjmDUtFmMM4y429bnKLa8bYBMHcYdnQA==}
 
-  bare-fs@4.0.2:
-    resolution: {integrity: sha512-S5mmkMesiduMqnz51Bfh0Et9EX0aTCJxhsI4bvzFFLs8Z1AV8RDHadfY5CyLwdoLHgXbNBEN1gQcbEtGwuvixw==}
+  bare-fs@4.1.2:
+    resolution: {integrity: sha512-8wSeOia5B7LwD4+h465y73KOdj5QHsbbuoUfPBi+pXgFJIPuG7SsiOdJuijWMyfid49eD+WivpfY7KT8gbAzBA==}
     engines: {bare: '>=1.16.0'}
     peerDependencies:
       bare-buffer: '*'
@@ -1765,8 +1768,8 @@ packages:
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
 
-  devtools-protocol@0.0.1413902:
-    resolution: {integrity: sha512-yRtvFD8Oyk7C9Os3GmnFZLu53yAfsnyw1s+mLmHHUK0GQEc9zthHWvS1r67Zqzm5t7v56PILHIVZ7kmFMaL2yQ==}
+  devtools-protocol@0.0.1425554:
+    resolution: {integrity: sha512-uRfxR6Nlzdzt0ihVIkV+sLztKgs7rgquY/Mhcv1YNCWDh5IZgl5mnn2aeEnW5stYTE0wwiF4RYVz8eMEpV1SEw==}
 
   dfa@1.2.0:
     resolution: {integrity: sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==}
@@ -3150,12 +3153,12 @@ packages:
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
 
-  puppeteer-core@24.5.0:
-    resolution: {integrity: sha512-vqibSk7xGOoqOlPUk3H+Iz02b4jCEd5QxaiuXclqyyBrJ6ZK22mXkg9HBSpyZePq6vKWh5ZAqUilSnbF2bv4Jg==}
+  puppeteer-core@24.6.0:
+    resolution: {integrity: sha512-Cukxysy12m0v350bhl/Gzof0XQYmtON9l2VvGp3D4BOQZVgyf+y5wIpcjDZQ/896Okoi95dKRGRV8E6a7SYAQQ==}
     engines: {node: '>=18'}
 
-  puppeteer@24.5.0:
-    resolution: {integrity: sha512-3m0B48gj1A8cK01ma49WwjE8mg4i9UmnR2lP64rwBiLacJ2V20FpT67MgSUyzfz9BcHMQQweuF6Q854mnIYTqg==}
+  puppeteer@24.6.0:
+    resolution: {integrity: sha512-wYTB8WkzAr7acrlsp+0at1PZjOJPOxe6dDWKOG/kaX4Zjck9RXCFx3CtsxsAGzPn/Yv6AzgJC/CW1P5l+qxsqw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3919,8 +3922,8 @@ packages:
     resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26}
     version: 0.0.0
 
-  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29:
-    resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29}
+  whats-that-tech-js-sdk@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/3b8f84591642bd2a430c5237a5362925c3179af2:
+    resolution: {tarball: https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/3b8f84591642bd2a430c5237a5362925c3179af2}
     version: 0.0.1
 
   whatwg-url@5.0.0:
@@ -5537,7 +5540,7 @@ snapshots:
   bare-events@2.5.4:
     optional: true
 
-  bare-fs@4.0.2:
+  bare-fs@4.1.2:
     dependencies:
       bare-events: 2.5.4
       bare-path: 3.0.0
@@ -5686,9 +5689,9 @@ snapshots:
 
   chownr@3.0.0: {}
 
-  chromium-bidi@3.0.0(devtools-protocol@0.0.1413902):
+  chromium-bidi@3.0.0(devtools-protocol@0.0.1425554):
     dependencies:
-      devtools-protocol: 0.0.1413902
+      devtools-protocol: 0.0.1425554
       mitt: 3.0.1
       zod: 3.24.2
 
@@ -5949,7 +5952,7 @@ snapshots:
 
   devalue@5.1.1: {}
 
-  devtools-protocol@0.0.1413902: {}
+  devtools-protocol@0.0.1425554: {}
 
   dfa@1.2.0: {}
 
@@ -7539,12 +7542,12 @@ snapshots:
       end-of-stream: 1.4.4
       once: 1.4.0
 
-  puppeteer-core@24.5.0:
+  puppeteer-core@24.6.0:
     dependencies:
       '@puppeteer/browsers': 2.9.0
-      chromium-bidi: 3.0.0(devtools-protocol@0.0.1413902)
+      chromium-bidi: 3.0.0(devtools-protocol@0.0.1425554)
       debug: 4.4.0
-      devtools-protocol: 0.0.1413902
+      devtools-protocol: 0.0.1425554
       typed-query-selector: 2.12.0
       ws: 8.18.1
     transitivePeerDependencies:
@@ -7553,13 +7556,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@24.5.0(typescript@5.8.2):
+  puppeteer@24.6.0(typescript@5.8.2):
     dependencies:
       '@puppeteer/browsers': 2.9.0
-      chromium-bidi: 3.0.0(devtools-protocol@0.0.1413902)
+      chromium-bidi: 3.0.0(devtools-protocol@0.0.1425554)
       cosmiconfig: 9.0.0(typescript@5.8.2)
-      devtools-protocol: 0.0.1413902
-      puppeteer-core: 24.5.0
+      devtools-protocol: 0.0.1425554
+      puppeteer-core: 24.6.0
       typed-query-selector: 2.12.0
     transitivePeerDependencies:
       - bare-buffer
@@ -7975,7 +7978,7 @@ snapshots:
       pump: 3.0.2
       tar-stream: 3.1.7
     optionalDependencies:
-      bare-fs: 4.0.2
+      bare-fs: 4.1.2
       bare-path: 3.0.0
     transitivePeerDependencies:
       - bare-buffer
@@ -8370,9 +8373,9 @@ snapshots:
 
   whats-that-tech-core@https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26: {}
 
-  whats-that-tech@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/85e0b054ce42b411121857e412bf4d97755abd29(typescript@5.8.2):
+  whats-that-tech-js-sdk@https://codeload.github.com/tzi-labs/whats-that-tech-js-sdk/tar.gz/3b8f84591642bd2a430c5237a5362925c3179af2(typescript@5.8.2):
     dependencies:
-      puppeteer: 24.5.0(typescript@5.8.2)
+      puppeteer: 24.6.0(typescript@5.8.2)
       whats-that-tech-core: https://codeload.github.com/tzi-labs/whats-that-tech-core/tar.gz/c6f465c6eeef22b9c2001997fe71792d0d207d26
     transitivePeerDependencies:
       - bare-buffer
