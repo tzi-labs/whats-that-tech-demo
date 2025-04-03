@@ -49,7 +49,7 @@
             </div>
 
             <!-- Contribution Column -->
-            <div class="text-sm text-gray-600 dark:text-gray-400">
+            <div class="text-sm text-gray-600 dark:text-gray-300">
               <p class="font-medium mb-2">Want to contribute? There are two ways to help:</p>
               <div class="space-y-4 text-left">
                 <div>
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <UCard class="mb-6 border-4 border-yellow-400 dark:border-yellow-500 shadow-lg">
+        <UCard class="mb-6 border-4 border-yellow-400 dark:border-yellow-500 shadow-lg bg-white dark:bg-gray-800 dark:text-white">
           <form @submit.prevent="detectTech">
             <div class="flex flex-col gap-4">
               <div class="flex gap-2">
@@ -89,11 +89,11 @@
                     base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 focus:ring-0 focus:ring-offset-0',
                     padding: { sm: 'px-4 py-4' },
                     size: { sm: 'text-lg' },
-                    background: 'bg-white dark:bg-gray-800',
-                    border: 'border-2 border-gray-300 dark:border-gray-700',
+                    background: 'bg-white dark:bg-gray-700',
+                    border: 'border-2 border-gray-300 dark:border-gray-500',
                     ring: 'focus:ring-2 focus:ring-yellow-500 dark:focus:ring-yellow-400',
                     rounded: 'rounded-lg',
-                    placeholder: 'placeholder-gray-500 dark:placeholder-gray-400',
+                    placeholder: 'placeholder-gray-500 dark:placeholder-white',
                     color: 'text-gray-900 dark:text-white font-medium'
                   }"
                   required
@@ -103,13 +103,14 @@
                   color="gray"
                   variant="solid"
                   @click="addUrl"
+                  class="text-gray-900 dark:text-white"
                 >
                   Add URL
                 </UButton>
               </div>
 
               <div v-if="urls.length > 0" class="space-y-2">
-                <div v-for="(url, index) in urls" :key="index" class="flex items-center gap-2">
+                <div v-for="(url, index) in urls" :key="index" class="flex items-center gap-2 text-white">
                   <UInput
                     v-model="urls[index]"
                     type="url"
@@ -119,11 +120,11 @@
                       base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 focus:ring-0 focus:ring-offset-0',
                       padding: { sm: 'px-4 py-4' },
                       size: { sm: 'text-lg' },
-                      background: 'bg-white dark:bg-gray-800',
-                      border: 'border-2 border-gray-300 dark:border-gray-700',
+                      background: 'bg-white dark:bg-gray-700',
+                      border: 'border-2 border-gray-300 dark:border-white0',
                       ring: 'focus:ring-2 focus:ring-yellow-500 dark:focus:ring-yellow-400',
                       rounded: 'rounded-lg',
-                      placeholder: 'placeholder-gray-500 dark:placeholder-gray-400',
+                      placeholder: 'placeholder-gray-500 dark:text-white',
                       color: 'text-gray-900 dark:text-white font-medium'
                     }"
                     required
@@ -133,6 +134,7 @@
                     color="red"
                     variant="solid"
                     @click="removeUrl(index)"
+                    class="text-white"
                   >
                     Remove
                   </UButton>
@@ -145,7 +147,7 @@
                 :disabled="loading"
                 color="yellow"
                 variant="solid"
-                class="font-bold"
+                class="font-bold text-gray-900 dark:text-white"
                 :class="{ 'animate-bounce': highlightCatch }"
               >
                 {{ loading ? 'Analyzing...' : 'Catch!' }}
@@ -180,18 +182,22 @@
             }"
           >
             <template #header>
-              <div class="flex items-center justify-between">
-                <h2 class="text-xl font-semibold text-red-600 dark:text-red-400">
-                  {{ result.url }}
-                </h2>
-                <div class="flex items-center gap-2">
-                  <div v-if="result.analyzing" class="flex items-center gap-2 text-yellow-500 dark:text-yellow-400 animate-pulse">
-                    <UIcon name="i-heroicons-signal" class="w-5 h-5" />
-                    <span class="text-sm font-medium">Analyzing...</span>
-                  </div>
-                  <UBadge color="yellow" variant="solid" class="font-bold">
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <h2 class="text-xl font-semibold text-red-600 dark:text-red-400">
+                    {{ result.url }}
+                  </h2>
+                  <UBadge
+                    color="yellow"
+                    variant="solid"
+                    class="font-bold text-gray-900 dark:text-white"
+                  >
                     {{ result.technologies.length }} technologies checked
                   </UBadge>
+                </div>
+                <div v-if="result.analyzing" class="flex items-center gap-2 text-yellow-500 dark:text-yellow-400 animate-pulse">
+                  <UIcon name="i-heroicons-signal" class="w-5 h-5" />
+                  <span class="text-sm font-medium">Analyzing...</span>
                 </div>
               </div>
             </template>
@@ -212,7 +218,7 @@
               >
                 <div v-for="tech in [...result.technologies].filter(t => t.detected).sort((a, b) => b.confidence - a.confidence)" 
                   :key="tech.name" 
-                  class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors"
+                  class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-600 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors"
                 >
                   <div class="flex items-center gap-3">
                     <UIcon
@@ -228,14 +234,14 @@
                     <UBadge
                       color="green"
                       variant="solid"
-                      class="font-bold"
+                      class="font-bold text-white"
                     >
                       Detected
                     </UBadge>
                     <UBadge
                       :color="getConfidenceColor(tech.confidence)"
                       variant="solid"
-                      class="font-bold"
+                      class="font-bold text-white"
                     >
                       {{ Math.round(tech.confidence * 100) }}% match
                     </UBadge>
@@ -244,7 +250,7 @@
               </TransitionGroup>
 
               <!-- Undetected Technologies -->
-              <div v-if="result.technologies.some(t => !t.detected)" class="mt-6">
+              <div v-if="result.technologies.some(t => !t.detected)" class="mt-6 dark:text-white">
                 <UButton
                   color="gray"
                   variant="ghost"
@@ -273,7 +279,7 @@
                   >
                     <div v-for="tech in [...result.technologies].filter(t => !t.detected).sort((a, b) => b.confidence - a.confidence)" 
                       :key="tech.name" 
-                      class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg border-2 border-gray-200 dark:border-gray-700"
+                      class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-600"
                     >
                       <div class="flex items-center gap-3">
                         <UIcon
@@ -289,14 +295,14 @@
                         <UBadge
                           color="gray"
                           variant="solid"
-                          class="font-bold"
+                          class="font-bold text-white"
                         >
                           Not Detected
                         </UBadge>
                         <UBadge
                           :color="getConfidenceColor(tech.confidence)"
                           variant="solid"
-                          class="font-bold"
+                          class="font-bold text-white"
                         >
                           {{ Math.round(tech.confidence * 100) }}% match
                         </UBadge>
