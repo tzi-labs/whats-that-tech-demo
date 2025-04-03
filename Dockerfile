@@ -28,7 +28,7 @@ RUN apt-get update -qq && \
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies and build whats-that-tech
-RUN pnpm install --frozen-lockfile --prod=false
+RUN pnpm install
 
 # Copy application code
 COPY . .
