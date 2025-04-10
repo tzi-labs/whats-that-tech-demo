@@ -38,8 +38,8 @@ export default defineEventHandler(async (event) => {
         url: urlToAnalyze,
         categories: ['framework', 'cms', 'language', 'database', 'server', 'devops', 'ci-cd', 'cloud'],
         headless: true,
+        debug: true, // Enable debug logging
         timeout: 30000,
-        customFingerprintsDir: join(process.cwd(), 'node_modules/whats-that-tech-core'),
         onProgress: (progress) => {
           // Send progress updates
           sendEvent({ 

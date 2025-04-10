@@ -110,7 +110,7 @@
               </div>
 
               <div v-if="urls.length > 0" class="space-y-2">
-                <div v-for="(url, index) in urls" :key="index" class="flex items-center gap-2 text-white">
+                <div v-for="(url, index) in urls" :key="index" class="flex items-center gap-2 text-black dark:text-white">
                   <UInput
                     v-model="urls[index]"
                     type="url"
@@ -121,7 +121,7 @@
                       padding: { sm: 'px-4 py-4' },
                       size: { sm: 'text-lg' },
                       background: 'bg-white dark:bg-gray-700',
-                      border: 'border-2 border-gray-300 dark:border-white0',
+                      border: 'border-2 border-gray-500 dark:border-gray-600',
                       ring: 'focus:ring-2 focus:ring-yellow-500 dark:focus:ring-yellow-400',
                       rounded: 'rounded-lg',
                       placeholder: 'placeholder-gray-500 dark:text-white',
@@ -134,7 +134,7 @@
                     color="red"
                     variant="solid"
                     @click="removeUrl(index)"
-                    class="text-white"
+                    class="text-black dark:text-white"
                   >
                     Remove
                   </UButton>
